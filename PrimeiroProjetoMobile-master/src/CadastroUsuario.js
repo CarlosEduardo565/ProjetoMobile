@@ -8,7 +8,7 @@ export default function CadastroUsuario({ navigation }) {
     const entrar = () => {
         navigation.reset({
             index: 0,
-            routes: [{ name: "ListaContato" }]
+            routes: [{ name: "telaLogin" }]
         })
     }
 
@@ -17,13 +17,13 @@ export default function CadastroUsuario({ navigation }) {
                 <View style={styles.view}>
 
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate("ListaContato")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("telaLogin")}>
                             <Icon   style={styles.icon} name="back" size={50} color='#000' />
                         </TouchableOpacity>
                     </View>
 
                     <View>
-                        <Text style={styles.textLista}>Usuario</Text>
+                        <Text style={styles.textLista}>Cadastro</Text>
                     </View>
 
 

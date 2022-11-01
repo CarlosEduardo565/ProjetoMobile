@@ -37,7 +37,7 @@ export default function EditaContato({ navigation }) {
             <View style={styles.view}>
 
                 <View>
-                    <TouchableOpacity onPress={() => navigation.goBack()}> 
+                    <TouchableOpacity onPress={() => navigation.navigate('telaLogin')}> 
                         <Icon  style={styles.icon} name="back" size={50} color='#000' />
                     </TouchableOpacity>
                 </View>

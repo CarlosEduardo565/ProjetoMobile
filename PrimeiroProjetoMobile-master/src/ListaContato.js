@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput,TouchableHighlight, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect,  } from 'react';
+import { StyleSheet, View, Text, TextInput,TouchableHighlight, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Header, Card, Button} from 'react-native-elements' 
+import { Header, Card, Button} from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 
 
@@ -29,16 +30,15 @@ export default function ListaScreen({navigation}){
   <Header
           
           leftComponent={
-            <Button
-             tittle="<"
-             onPress={() => navigation.goBack()}
-             ></Button>}
-          centerComponent={{ text: 'lista', style: {color: '#fff', fontSize:20 }}}
+            <TouchableOpacity onPress={() => navigation.goBack()}> 
+            <Icon name="back" size={50} color='#000' />
+            </TouchableOpacity>
+          }
+          centerComponent={{ text: 'Lista de Contatos', style: {color: '#fff', fontSize:20 }}}
           rightComponent={
-            <Button
-             tittle="+"
-             onPress={() => navigation.navigate('CadastroContato')}
-             ></Button>}
+            <TouchableOpacity onPress={() => navigation.navigate('CadastroContato')}>
+              <Icon name="adduser" size={50} color='#000' />
+            </TouchableOpacity>}
           
 />
           
@@ -67,8 +67,4 @@ export default function ListaScreen({navigation}){
  
   )
 }
-const styles = styleSheet.create({
-  container:{
-    flex:1,
-  },
-})
+
