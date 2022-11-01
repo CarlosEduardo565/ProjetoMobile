@@ -10,11 +10,11 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="telaLogin" component={TelaLogin} />
-      <Stack.Screen name="ListaContato" component={ListaContato} />
-      <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} />
-      <Stack.Screen name="CadastroContato" component={CadastroContato} />
-      <Stack.Screen name="EditaContato" component={EditaContato} />
+      <Stack.Screen name="telaLogin" component={TelaLogin} options={{ headerShown: false }} />
+      <Stack.Screen name="ListaContato" component={ListaContato} options={{ headerShown: false }} />
+      <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} options={{ headerShown: false }} />
+      <Stack.Screen name="CadastroContato" component={CadastroContato} options={{ headerShown: false }} />
+      <Stack.Screen name="EditaContato" component={EditaContato} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }

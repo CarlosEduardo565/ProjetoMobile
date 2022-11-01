@@ -6,6 +6,26 @@ import logo from '../assets/usuario.png';
 
 export default function EditaContato({ navigation }) {
 
+    [getNome,setNome] = useState();
+    [getTelefone,setTelefone] = useState();
+    [getId,setId] = useState();
+
+
+    useEffect(()=>{
+      if(route.params){
+            const { nome } =  route.params 
+            const { telefone } =  route.params 
+            const { id } =  route.params
+            
+
+            setNome(nome)
+            setTelefone(telefone)
+            setId(id)
+            
+
+      }
+    },[])
+
     const entrar = () => {
         navigation.reset({
             index: 0,
@@ -17,7 +37,7 @@ export default function EditaContato({ navigation }) {
             <View style={styles.view}>
 
                 <View>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}> 
                         <Icon  style={styles.icon} name="back" size={50} color='#000' />
                     </TouchableOpacity>
                 </View>
