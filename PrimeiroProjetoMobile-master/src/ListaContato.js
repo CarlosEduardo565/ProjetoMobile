@@ -50,6 +50,7 @@ export default function ListaScreen({navigation}){
         telefone: u.telefone,
         cpf: u.cpf,
         id: u.id,
+        email: u.email,
       })}>
         <Card >
        <View key={i}>

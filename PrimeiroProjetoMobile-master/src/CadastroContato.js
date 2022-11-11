@@ -11,6 +11,31 @@ export default function CadastroUsuario({ navigation }) {
             routes: [{ name: "telaLogin", name: "ListaContato"}]
         })
     }
+    function inserirDados(){
+
+        const result =  axios.post('http://professornilson.com/testeservico/clientes', {
+            nome: getNome,
+            Email: getEmail,
+            telefone: getTelefone
+          })
+          .then(function (response) {
+            setNome('');
+            setEmail('');
+            setTelefone('');
+            setId('');
+            showMessage({
+              message: "Registro Adicionado com Sucesso!!",
+              type: "success",
+            });
+            //navigation.navigate('Cadastro')
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+         
+    }
+    
 
         return (
             <KeyboardAvoidingView style={styles.container}>

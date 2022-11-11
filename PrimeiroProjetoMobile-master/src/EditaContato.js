@@ -1,30 +1,82 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Button } from 'react-native';
+import React, { useState, useEffect,  } from 'react';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity,Button } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 import logo from '../assets/usuario.png';
+import axios from 'axios';
+import FlashMessage from "react-native-flash-message";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
-export default function EditaContato({ navigation }) {
+export default function EditaContato({ navigation, route }) {
 
     [getNome,setNome] = useState();
     [getTelefone,setTelefone] = useState();
     [getId,setId] = useState();
-
+    [getCpf,setCpf] = useState();
+    [getEmail,setEmail] = useState();
 
     useEffect(()=>{
-      if(route.params){
-            const { nome } =  route.params 
-            const { telefone } =  route.params 
-            const { id } =  route.params
-            
+        if(route.params){
+              const { nome } =  route.params 
+              const { telefone } =  route.params 
+              const { cpf } =  route.params 
+              const { id } =  route.params
+              const { email } =  route.params
+  
+              setNome(nome)
+              setTelefone(telefone)
+              setCpf(cpf)
+              setId(id)
+              setEmail(email)
+  
+        }
+      },[])  
 
-            setNome(nome)
-            setTelefone(telefone)
-            setId(id)
-            
+     function excluirDados(){
+         axios.delete('http://professornilson.com/testeservico/clientes/'+getId
+        )
+        .then(function (response) {
+            setNome('')
+            setTelefone('')
+            setCpf('')
+            setEmail('')
+            showMessage({
+                message: "Registro excluído com sucesso!",
+                type: "success",
+              });
+          console.log(response);
+        })
+        .catch(function (error) {
+            showMessage({
+                message: "Algum erro aconteceu!",
+                type: "info",
+              });
+            console.log(error);
+        });
+    }
 
-      }
-    },[])
+    async function alterarDados(){
+        await axios.put('http://professornilson.com/testeservico/clientes/'+getId,{
+         nome:getNome,
+         cpf:getCpf,
+         telefone:getTelefone,  
+        }
+        )
+        .then(function (response) {
+            showMessage({
+                message: "Registro alterado com sucesso!",
+                type: "success",
+              });
+          console.log(response);
+        })
+        .catch(function (error) {
+            showMessage({
+                message: "Algum erro aconteceu!",
+                type: "info",
+              });
+            console.log(error);
+        });
+    }
 
     const entrar = () => {
         navigation.reset({
@@ -53,29 +105,52 @@ export default function EditaContato({ navigation }) {
                 <TextInput
                     style={styles.input}
                     placeholder='Nome'
+                    onChangeText={text => setNome(text)}
+                    value={getNome}
                     autoCorrect={false}
                 />
 
                 <TextInput
                     style={styles.input}
                     placeholder='Email'
+                    onChangeText={text => setEmail(text)}
+                    value={getEmail}
+                    autoCorrect={false}
+                />
+                
+                <TextInput
+                    style={styles.input}
+                    placeholder='Telefone'
+                    onChangeText={text => setTelefone(text)}
+                    value={getTelefone}
                     autoCorrect={false}
                 />
 
                 <TextInput
                     style={styles.input}
-                    placeholder='Telefone'
+                    placeholder='Cpf'
+                    onChangeText={text => setCpf(text)}
+                    value={getCpf}
                     autoCorrect={false}
                 />
 
-                <TouchableOpacity style={styles.botaoLogin} >
-
-                    <Text style={styles.textoLogin}>Salvar</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity  style={styles.botaoCadastrar}>
-                    <Text style={styles.textoCadastrar}>Excluir</Text>
-                </TouchableOpacity>
+           
+            <Button 
+            title="Alterar"
+            style={styles.botaoLogin}
+            onPress={() => alterarDados()}
+            />             
+            
+            
+            <Button 
+            title="Excluir"
+            linearGradientProps={{
+              colors: ['red','red', 'red'],
+              }}
+            style={styles.botao}
+            onPress={() => excluirDados()}
+            /> 
+             
 
             </View>
         </KeyboardAvoidingView>
@@ -87,7 +162,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-
     },
     ViewLogo: {
         flex: 1,
@@ -121,7 +195,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 7,
         marginTop: 10,
-
     },
     textoLogin: {
         fontSize: 18
@@ -129,9 +202,6 @@ const styles = StyleSheet.create({
 
     textoCadastrar: {
         fontSize: 18
-    },
-    icon: {
-
     },
     view: {
         flexDirection: 'row', //deixar os dois lado a lado
