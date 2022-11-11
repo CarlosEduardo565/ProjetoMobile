@@ -59,7 +59,8 @@ export default function EditaContato({ navigation, route }) {
         await axios.put('http://professornilson.com/testeservico/clientes/'+getId,{
          nome:getNome,
          cpf:getCpf,
-         telefone:getTelefone,  
+         telefone:getTelefone, 
+         email:getEmail 
         }
         )
         .then(function (response) {

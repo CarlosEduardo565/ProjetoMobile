@@ -1,27 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect,  } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, TouchableOpacity, Button } from 'react-native';
-import logo from '../assets/usuario.png'
-import Icon from 'react-native-vector-icons/AntDesign'
+import logo from '../assets/usuario.png';
+import Icon from 'react-native-vector-icons/AntDesign';
+import axios from 'axios';
+import FlashMessage from "react-native-flash-message";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
-export default function CadastroUsuario({ navigation }) {
-    const entrar = () => {
-        navigation.reset({
-            index: 0,
-            routes: [{ name: "telaLogin", name: "ListaContato"}]
-        })
-    }
+export default function CadastroContato({ navigation }) {
+
+
+    [getNome,setNome] = useState();
+    [getTelefone,setTelefone] = useState();
+    [getId,setId] = useState();
+    [getCpf,setCpf] = useState();
+    [getEmail,setEmail] = useState();
+    
+
     function inserirDados(){
 
         const result =  axios.post('http://professornilson.com/testeservico/clientes', {
             nome: getNome,
             Email: getEmail,
-            telefone: getTelefone
+            telefone: getTelefone,
+            cpf: getCpf,
+            id: getId,
           })
           .then(function (response) {
             setNome('');
             setEmail('');
             setTelefone('');
+            setCpf('');
             setId('');
             showMessage({
               message: "Registro Adicionado com Sucesso!!",
@@ -33,6 +42,13 @@ export default function CadastroUsuario({ navigation }) {
           .catch(function (error) {
             console.log(error);
           });
+
+          const entrar = () => {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: "telaLogin", name: "ListaContato"}]
+            })
+        }
          
     }
     
@@ -73,10 +89,17 @@ export default function CadastroUsuario({ navigation }) {
                         autoCorrect={false}
                     />
 
-                    <TouchableOpacity style={styles.botaoLogin}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Cpf'
+                        autoCorrect={false}
+                    />
 
-                        <Text style={styles.textoLogin}>Salvar</Text>
-                    </TouchableOpacity>
+            <Button 
+            title="Salvar"
+            style={styles.botao}
+            onPress={() => inserirDados()}
+            />    
 
                 </View>
             </KeyboardAvoidingView>

@@ -5,6 +5,7 @@ import logo from '../assets/usuario.png'
 import Icon from 'react-native-vector-icons/AntDesign'
 
 export default function CadastroUsuario({ navigation }) {
+    
     const entrar = () => {
         navigation.reset({
             index: 0,
