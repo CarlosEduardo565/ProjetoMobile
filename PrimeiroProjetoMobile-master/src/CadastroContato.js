@@ -74,24 +74,32 @@ export default function CadastroContato({ navigation }) {
                     <TextInput
                         style={styles.input}
                         placeholder='Nome'
+                        onChangeText={text => setNome(text)}
+                        value={getNome}
                         autoCorrect={false}
                     />
 
                     <TextInput
                         style={styles.input}
                         placeholder='Email'
+                        onChangeText={text => setEmail(text)}
+                        value={getEmail}
                         autoCorrect={false}
                     />
 
                     <TextInput
                         style={styles.input}
                         placeholder='Telefone'
+                        onChangeText={text => setTelefone(text)}
+                        value={getTelefone}
                         autoCorrect={false}
                     />
 
                     <TextInput
                         style={styles.input}
                         placeholder='Cpf'
+                        onChangeText={text => setCpf(text)}
+                        value={getCpf}
                         autoCorrect={false}
                     />
 
