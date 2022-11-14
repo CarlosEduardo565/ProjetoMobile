@@ -90,7 +90,7 @@ export default function EditaContato({ navigation, route }) {
             <View style={styles.view}>
 
                 <View>
-                    <TouchableOpacity onPress={() => navigation.navigate('telaLogin')}> 
+                    <TouchableOpacity onPress={() => navigation.navigate('ListaContato')}> 
                         <Icon  style={styles.icon} name="back" size={50} color='#000' />
                     </TouchableOpacity>
                 </View>
@@ -141,7 +141,7 @@ export default function EditaContato({ navigation, route }) {
             style={styles.botaoLogin}
             onPress={() => alterarDados()}
             />             
-            
+          
             
             <Button 
             title="Excluir"

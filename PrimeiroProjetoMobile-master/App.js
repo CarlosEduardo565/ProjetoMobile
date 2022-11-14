@@ -5,6 +5,7 @@ import ListaContato from './src/ListaContato';
 import CadastroUsuario from './src/CadastroUsuario'
 import CadastroContato from './src/CadastroContato'
 import EditaContato from './src/EditaContato'
+
 const Stack = createStackNavigator();
 
 function MyStack() {
