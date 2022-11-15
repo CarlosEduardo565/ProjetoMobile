@@ -5,7 +5,21 @@ import ListaContato from './src/ListaContato';
 import CadastroUsuario from './src/CadastroUsuario'
 import CadastroContato from './src/CadastroContato'
 import EditaContato from './src/EditaContato'
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyA0UAQjYbdwXNmCbwOrC_WFXFDsJQde2O8",
+  authDomain: "projetomobile-14199.firebaseapp.com",
+  projectId: "projetomobile-14199",
+  storageBucket: "projetomobile-14199.appspot.com",
+  messagingSenderId: "431275487081",
+  appId: "1:431275487081:web:669f9e82be88faf26657f8",
+  measurementId: "G-0ENDBQWS06"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const Stack = createStackNavigator();
 
 function MyStack() {
@@ -22,6 +36,7 @@ function MyStack() {
 
 export default function app() {
   return(
+    
     <NavigationContainer>
       <MyStack />
     </NavigationContainer>
