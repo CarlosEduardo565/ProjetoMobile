@@ -12,8 +12,9 @@ export default function EditaContato({ navigation, route }) {
     [getNome,setNome] = useState();
     [getTelefone,setTelefone] = useState();
     [getId,setId] = useState();
-    [getCpf,setCpf] = useState();
     [getEmail,setEmail] = useState();
+    [getCpf,setCpf] = useState();
+    
 
     useEffect(()=>{
         if(route.params){
